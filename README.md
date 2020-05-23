@@ -1,3 +1,2 @@
-# hello-world
-Some rep
-Big stuff
+# C Programs
+Various odds and ends of practice C.
