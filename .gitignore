@@ -1,2 +1,6 @@
 .vscode/launch.json
+<<<<<<< HEAD
 .vscode/settings.json
+=======
+.vscode/tasks.json
+>>>>>>> 47b113fcd74b7239b52e047cd3dc5b6a5539cf64
