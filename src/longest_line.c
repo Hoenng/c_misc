@@ -1,80 +1,53 @@
 #include <stdio.h>
 
-/* Use a short maximum length to force lines to be displayed cut.  */
+#define MAXLINE	1000
 
-#define MAXLINE	20
+int max;
+char line[MAXLINE];
+char longest[MAXLINE];
 
-int 	getlines (char line[], int limit);
-void	copy (char to[], char from[]);
+int getlines(void);
+void copy(void);
 
 int main ()
 
 {
 	int	len;
-	int	max;
-	char	line[MAXLINE];
-	char	longest[MAXLINE];
+	extern int max;
+	extern char	longest[MAXLINE];
 
 	max = 0;
-	while ((len = getlines(line, MAXLINE)) > 0)
-
+	while ((len = getlines()) > 0)
 		if (len > max) {
-
 			max = len;
-			copy(longest, line);
-
+			copy();
 		}
-
 	if (max > 0)
-
-		printf("Longest line is %d characters:\n%s", max, longest);
-
+		printf("%s", longest);
 	return 0;
 }
 
-int getlines (char line[], int limit)
-
+int getlines(void)
 {
 	int	i, c;
+    extern char line[];
 
-	for (i = 0; (c = getchar()) != EOF && c != '\n'; i++)
-
-		if (i < limit - 2)
-
+	for (i = 0; i < MAXLINE -1 && (c = getchar()) != EOF && c != '\n'; i++)
 			line[i] = c;
-
-	/* Make sure that the returned string ends with a newline character and
-	 * is null terminated.
- 	 */
-
-	if (i < limit - 1) {
-
-		line[i] = '\n';
-		line[i + 1] = '\0';
-
-	} else {
-
-		line[limit - 2] = '\n';
-		line[limit - 1] = '\0';
-
-	}
-
-	/* A newline counts as one character, adjust length if needed. */
-
-	if (c == '\n')
-
-		i++;
-
+    if (c == '\n') {
+        line[i] = c;
+        ++i;
+    }
+    line[i] = '\0';
 	return i;
 }
 
-void copy (char to[], char from[])
-
+void copy(void)
 {
 	int	i;
+    extern char line[], longest[];
 
 	i = 0;
-	while ((to[i] = from[i]) != '\0')
-
+	while ((longest[i] = line[i]) != '\0')
 		i++;
 }
