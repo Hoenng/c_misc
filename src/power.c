@@ -11,7 +11,7 @@ int main()
         return 0;
 }
 
-/*power: raise base (2 in the second column, -3 in the next, n is 0 to 9 i.e. first column) to n-th power */
+/*power: raise base (2 in the second column, -3 in the next, n is 0 to 9 i.e. first column to n-th power */
 int power(int base, int n)
 {
         int i, p;
